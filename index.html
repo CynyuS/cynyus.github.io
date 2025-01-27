@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button id="toggle-sidebar">Toggle Sidebar</button>
+    <div class="main-content">
+        <div class="window-controls">
+            <div class="window-title">My Profile</div>
+            <div class="control-buttons">
+                <button class="window-button minimize">−</button>
+                <button class="window-button maximize">□</button>
+                <button class="window-button close">×</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <img src="your-photo.jpg" alt="Profile Picture" class="profile-img">
+            <div class="about-me">
+                <h2>About Me</h2>
+                <p>Welcome to my personal website! This is a brief description about me and what I do.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <div class="home-button">
+            <img src="logo.png" alt="Logo" class="logo">
+            <a href="#" class="nav-link">Home</a>
+        </div>
+        <nav>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#blog" class="nav-link">Blog</a>
+            <a href="#about" class="nav-link">About Me</a>
+            <a href="#contact" class="nav-link">Contact</a>
+            <a href="#resume" class="nav-link">Resume</a>
+        </nav>
+    </div>
+    <script>
+        const toggleButton = document.getElementById('toggle-sidebar');
+        const sidebar = document.querySelector('.sidebar');
+        const mainContent = document.querySelector('.main-content');
+
+        toggleButton.addEventListener('click', () => {
+            sidebar.classList.toggle('collapsed');
+            mainContent.classList.toggle('full-width');
+        });
+    </script>
+</body>
+</html>
