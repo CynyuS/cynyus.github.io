@@ -48,47 +48,29 @@
     </div>
     
     <div class="taskbar">
-        <button class="start-button">
-            <img src="windows-logo.png" alt="Start" class="start-logo">
+        <!-- <a href="/" class="start-button">
+            <img src="windows-logo.png" alt="Home" class="start-logo">
             <span>Start</span>
-        </button>
+        </a> -->
+        <!-- <div class="start-button">
+            <img src="logo.png" alt="Home" class="home-logo">
+            <a href="#" class="nav-link">Home</a>
+            <span>Home</span>
+        </div> -->
+        <a href="#" class="start-button">
+            <img src="windows-logo.png" alt="Home" class="start-logo">
+            <span>Home</span>
+        </a>
         <div class="taskbar-icons">
-            <button class="taskbar-icon search-icon" title="Toggle Sidebar">
+            <button class="taskbar-icon search-icon" title="Toggle Navigation">
                 <span class="icon">🔍</span>
             </button>
-            <!-- Add more icons as needed -->
         </div>
         <div class="taskbar-tray">
             <span class="clock">12:00 PM</span>
         </div>
     </div>
 
-    <script>
-        const toggleButton = document.getElementById('toggle-sidebar');
-        const searchIcon = document.querySelector('.search-icon');
-        const sidebar = document.querySelector('.sidebar');
-        const mainContent = document.querySelector('.main-content');
-
-        function toggleSidebar() {
-            sidebar.classList.toggle('collapsed');
-            mainContent.classList.toggle('full-width');
-        }
-
-        toggleButton.addEventListener('click', toggleSidebar);
-        searchIcon.addEventListener('click', toggleSidebar);
-
-        // Add clock functionality
-        function updateClock() {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString('en-US', { 
-                hour: 'numeric', 
-                minute: '2-digit'
-            });
-            document.querySelector('.clock').textContent = timeString;
-        }
-        
-        setInterval(updateClock, 1000);
-        updateClock();
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

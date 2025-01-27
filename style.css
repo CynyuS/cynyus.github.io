@@ -4,21 +4,45 @@ body {
     color: black;
     margin: 0;
     padding: 0;
+    min-height: 100vh;
+    padding-bottom: var(--taskbar-height);
+    overflow: hidden;
+    height: 100vh;
 }
 
 .main-content {
     padding: 0;
     background-color: #c0c0c0;
     border: 2px solid #858585;
-    margin: 20px;
-    transition: margin-left 0.3s ease;
-    margin-left: 262px;
+    margin: var(--window-margin);
+    width: calc(100% - 2 * var(--window-margin));
+    transition: 
+        margin-left 0.3s ease,
+        width 0.3s ease;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-    margin-bottom: 40px;  /* Give space for taskbar */
+    margin-bottom: calc(var(--taskbar-height) + var(--window-margin));
+    height: calc(100vh - var(--taskbar-height) - 2 * var(--window-margin));
+    max-height: unset;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.main-content.sidebar-expanded {
+    margin-left: calc(250px + 2 * var(--window-margin));
+    width: calc(100% - 250px - 3 * var(--window-margin));
+}
+
+@media (max-width: 768px) {
+    .main-content.sidebar-expanded {
+        margin-left: calc(80% + var(--window-margin));
+        width: calc(20% - 2 * var(--window-margin));
+    }
 }
 
 .main-content.full-width {
-    margin-left: 20px;
+    margin-left: var(--window-margin);
+    width: calc(100% - 2 * var(--window-margin));
 }
 
 .profile-img {
@@ -38,29 +62,44 @@ body {
 }
 
 .sidebar {
-    width: 200px;
+    width: 250px; /* Increased fixed width */
+    min-width: 250px; /* Ensure minimum width */
     background-color: #c0c0c0;
     border: 2px solid #858585;
     position: fixed;
-    top: 20px;
-    bottom: 40px;  /* Adjust sidebar to stop above taskbar */
-    left: 20px;
+    top: var(--window-margin);
+    bottom: calc(var(--taskbar-height) + var(--window-margin));
+    left: var(--window-margin);
     padding: 0;
-    transition: transform 0.3s ease;
-    transform: translateX(0);
+    transition: 
+        transform 0.5s cubic-bezier(.1, 1.2, .3, 1),
+        opacity 0.3s ease,
+        box-shadow 0.3s ease;
+    transform-origin: top left;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 999;  /* Below taskbar z-index */
+    height: calc(100vh - var(--taskbar-height) - 2 * var(--window-margin));
+    max-height: unset;
+    display: flex;
+    flex-direction: column;
 }
 
 .sidebar .window-content {
-    height: calc(100% - 28px);
+    flex: 1;
+    height: calc(100% - var(--header-height));
     overflow-y: auto;
+    overflow-x: hidden;  /* Prevent horizontal scroll */
+    padding: var(--window-padding);
 }
 
 .sidebar.collapsed {
-    transform: translateX(calc(-100% + 30px));
-    background-color: transparent;
-    border: none;
-    box-shadow: none;
+    transform: translate(0, calc(100vh - var(--taskbar-height))) scale(0.2);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sidebar.collapsed:hover {
+    opacity: 0.9;
 }
 
 .sidebar.collapsed .window-content,
@@ -70,19 +109,17 @@ body {
 
 .sidebar.collapsed .window-controls {
     height: 100%;
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    transform: rotate(180deg);
-    background: linear-gradient(0deg, #000080, #1084d0);
-    border: 2px solid #858585;
     width: 28px;
+    background: linear-gradient(90deg, #000080, #1084d0);
+    border: 2px solid #858585;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .sidebar.collapsed .control-buttons {
-    transform: rotate(90deg);
     position: absolute;
     bottom: 10px;
-    left: -4px;
+    left: 4px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 #toggle-sidebar {
@@ -92,7 +129,7 @@ body {
     padding: 0;
     width: 20px;
     height: 20px;
-    transition: none;
+    transition: background-color 0.2s ease;
 }
 
 #toggle-sidebar:hover {
@@ -104,10 +141,11 @@ body {
 }
 
 .home-button {
-    width: 100%;
+    width: 100%;  /* Change from calc(100% - 20px) */
+    box-sizing: border-box;  /* Include padding in width calculation */
     height: 60px;
     border: 2px solid var(--color-5);
-    margin-bottom: 20px;
+    margin-bottom: 10px;  /* Reduce from 20px */
     display: flex;
     align-items: center;
     background-color: white;
@@ -130,15 +168,20 @@ body {
 }
 
 .nav-link {
+    width: 100%;  /* Change from calc(100% - 24px) */
+    box-sizing: border-box;  /* Include padding and border in width calculation */
     display: block;
-    padding: 10px;
-    margin-bottom: 10px;
+    padding: 8px 10px;   /* Slightly reduce padding */
+    margin-bottom: 5px;  /* Reduce from 10px */
     background-color: white;
     border: 2px solid var(--color-5);
     text-decoration: none;
     color: black;
     border-color: #ffffff #858585 #858585 #ffffff;
     background: #c0c0c0;
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ellipsis for long text */
 }
 
 .nav-link:hover {
@@ -161,6 +204,10 @@ body {
   --color-3: #d3c6f1;
   --color-4: #e4b4e0;
   --color-5: #5b4b8b;
+  --taskbar-height: 32px;
+  --window-margin: 1rem;
+  --window-padding: 1.25rem;
+  --header-height: 28px;
 }
 
 .color-1 {
@@ -186,6 +233,9 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    height: var(--header-height);
+    min-height: var(--header-height);
 }
 
 .window-title {
@@ -223,10 +273,13 @@ body {
 }
 
 .window-content {
-    padding: 20px;
+    padding: var(--window-padding);
     border: 2px solid;
     border-color: #ffffff #858585 #858585 #ffffff;
     background: white;
+    flex: 1;
+    overflow-y: auto;
+    height: calc(100% - var(--header-height));
 }
 
 .taskbar {
@@ -234,13 +287,14 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 30px;
+    height: var(--taskbar-height);
     background-color: #c0c0c0;
     border-top: 2px solid #ffffff;
     display: flex;
     align-items: center;
     padding: 0 2px;
     z-index: 1000;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);  /* Optional: add shadow to taskbar */
 }
 
 .start-button {
@@ -255,6 +309,8 @@ body {
     border: 2px solid;
     border-color: #ffffff #858585 #858585 #ffffff;
     cursor: pointer;
+    text-decoration: none;
+    color: black;
 }
 
 .start-button:active {
@@ -291,6 +347,15 @@ body {
     border-color: #858585 #ffffff #ffffff #858585;
 }
 
+.taskbar-icon.search-icon {
+    position: relative;
+}
+
+.taskbar-icon.search-icon.active {
+    border-color: #858585 #ffffff #ffffff #858585;
+    background: #a0a0a0;
+}
+
 .taskbar-tray {
     margin-left: auto;
     display: flex;
@@ -304,4 +369,101 @@ body {
 .clock {
     font-family: 'Digital', 'Courier New', Courier, monospace;
     font-size: 12px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    :root {
+        --window-margin: 0.5rem;
+        --window-padding: 1rem;
+    }
+
+    .main-content {
+        transition: 
+            margin-left 0.5s cubic-bezier(.1, 1.2, .3, 1),
+            width 0.5s cubic-bezier(.1, 1.2, .3, 1);
+        margin-left: var(--window-margin);
+        width: calc(100% - 2 * var(--window-margin));
+    }
+
+    .sidebar {
+        width: 250px;
+        max-width: 250px;
+    }
+
+    .sidebar.collapsed {
+        transform: translateX(-100%);
+    }
+
+    .sidebar.collapsed .window-controls {
+        width: 32px;
+        right: -32px;
+        position: absolute;
+    }
+
+    .profile-img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .home-button {
+        height: 50px;
+    }
+
+    .taskbar {
+        padding: 0 var(--window-margin);
+    }
+
+    .main-content.sidebar-expanded {
+        margin-left: calc(80% + var(--window-margin));
+        width: calc(20% - 2 * var(--window-margin));
+    }
+}
+
+/* Additional responsive adjustments */
+@media (max-width: 480px) {
+    .window-content {
+        padding: calc(var(--window-padding) / 2);
+    }
+
+    .taskbar-tray {
+        display: none; /* Hide clock on very small screens */
+    }
+
+    .start-button span {
+        display: none; /* Hide "Start" text, keep only icon */
+    }
+}
+
+/* Landscape mode adjustments */
+@media (max-height: 600px) {
+    :root {
+        --window-margin: 0.5rem;
+    }
+
+    .sidebar .window-content,
+    .main-content .window-content {
+        padding: calc(var(--window-padding) / 2);
+    }
+}
+
+/* Ensure content is readable on larger screens */
+@media (min-width: 1200px) {
+    .main-content {
+        max-width: 1200px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+/* Add this to ensure nav fits */
+nav {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
