@@ -17,11 +17,26 @@
             </div>
         </div>
         <div class="window-content">
-            <img src="your-photo.jpg" alt="Profile Picture" class="profile-img">
             <div class="about-me">
                 <h2>About Me</h2>
                 <p>Welcome to my personal website! This is a brief description about me and what I do.</p>
             </div>
+        </div>
+    </div>
+
+    <!-- Add new gallery window -->
+    <div class="gallery-window hidden">
+        <div class="window-controls">
+            <div class="window-title">Photo Gallery</div>
+            <div class="control-buttons">
+                <button class="window-button minimize">−</button>
+                <button class="window-button maximize">□</button>
+                <button class="window-button close">×</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <img src="your-photo.jpg" alt="Profile Picture" class="profile-img">
+            <!-- Add more images here -->
         </div>
     </div>
 
@@ -33,11 +48,11 @@
             </div>
         </div>
         <div class="window-content">
-            <div class="home-button">
-                <img src="logo.png" alt="Logo" class="logo">
-                <a href="#" class="nav-link">Home</a>
-            </div>
             <nav>
+                <a href="#" class="home-button">
+                    <img src="logo.jpg" class="home-logo" alt="Home">
+                    <span>Home</span>
+                </a>
                 <a href="#projects" class="nav-link">Projects</a>
                 <a href="#blog" class="nav-link">Blog</a>
                 <a href="#about" class="nav-link">About Me</a>
@@ -48,15 +63,6 @@
     </div>
     
     <div class="taskbar">
-        <!-- <a href="/" class="start-button">
-            <img src="windows-logo.png" alt="Home" class="start-logo">
-            <span>Start</span>
-        </a> -->
-        <!-- <div class="start-button">
-            <img src="logo.png" alt="Home" class="home-logo">
-            <a href="#" class="nav-link">Home</a>
-            <span>Home</span>
-        </div> -->
         <a href="#" class="start-button">
             <img src="windows-logo.png" alt="Home" class="start-logo">
             <span>Home</span>
@@ -64,6 +70,9 @@
         <div class="taskbar-icons">
             <button class="taskbar-icon search-icon" title="Toggle Navigation">
                 <span class="icon">🔍</span>
+            </button>
+            <button class="taskbar-icon gallery-icon" title="Toggle Gallery">
+                <span class="icon">📷</span>
             </button>
         </div>
         <div class="taskbar-tray">

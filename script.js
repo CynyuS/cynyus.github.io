@@ -28,4 +28,58 @@ document.addEventListener('DOMContentLoaded', function() {
     
     setInterval(updateClock, 1000);
     updateClock();
+
+    // Add gallery functionality
+    const galleryIcon = document.querySelector('.gallery-icon');
+    const galleryWindow = document.querySelector('.gallery-window');
+    const galleryCloseBtn = galleryWindow.querySelector('.close');
+
+    function toggleGallery() {
+        galleryWindow.classList.toggle('hidden');
+        galleryIcon.classList.toggle('active');
+    }
+
+    galleryIcon.addEventListener('click', toggleGallery);
+    galleryCloseBtn.addEventListener('click', toggleGallery);
+
+    // Make gallery window draggable
+    const galleryHeader = galleryWindow.querySelector('.window-controls');
+    let isDragging = false;
+    let currentX;
+    let currentY;
+    let initialX;
+    let initialY;
+    let xOffset = 0;
+    let yOffset = 0;
+
+    galleryHeader.addEventListener('mousedown', dragStart);
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('mouseup', dragEnd);
+
+    function dragStart(e) {
+        initialX = e.clientX - xOffset;
+        initialY = e.clientY - yOffset;
+
+        if (e.target === galleryHeader) {
+            isDragging = true;
+        }
+    }
+
+    function drag(e) {
+        if (isDragging) {
+            e.preventDefault();
+            currentX = e.clientX - initialX;
+            currentY = e.clientY - initialY;
+            xOffset = currentX;
+            yOffset = currentY;
+            
+            galleryWindow.style.transform = `translate(${currentX}px, ${currentY}px)`;
+        }
+    }
+
+    function dragEnd() {
+        initialX = currentX;
+        initialY = currentY;
+        isDragging = false;
+    }
 });

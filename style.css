@@ -34,9 +34,21 @@ body {
 }
 
 @media (max-width: 768px) {
+    /* Remove or modify the problematic width calculation */
     .main-content.sidebar-expanded {
-        margin-left: calc(80% + var(--window-margin));
-        width: calc(20% - 2 * var(--window-margin));
+        margin-left: calc(250px + var(--window-margin));
+        width: calc(100% - 250px - 2 * var(--window-margin));
+    }
+
+    .sidebar {
+        width: 250px;
+        min-width: 250px; /* Ensure minimum width is maintained */
+    }
+
+    /* Ensure main content fills available space */
+    .main-content {
+        transition: margin-left 0.3s ease, width 0.3s ease;
+        width: calc(100% - 2 * var(--window-margin));
     }
 }
 
@@ -45,11 +57,20 @@ body {
     width: calc(100% - 2 * var(--window-margin));
 }
 
+.main-content .window-content {
+    padding: var(--window-padding);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
 .profile-img {
     width: 150px;
     height: 150px;
     border: 2px solid var(--color-5);
     margin-bottom: 20px;
+    margin-top: var(--window-padding);  /* Add top margin to first element */
 }
 
 .about-me {
@@ -140,19 +161,36 @@ body {
     left: 20px;
 }
 
+/* Remove the old .home-button class styles */
+/* Replace with new styles */
 .home-button {
-    width: 100%;  /* Change from calc(100% - 20px) */
-    box-sizing: border-box;  /* Include padding in width calculation */
-    height: 60px;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    padding: 8px 10px;
+    margin-bottom: 5px;
+    background-color: white;
     border: 2px solid var(--color-5);
-    margin-bottom: 10px;  /* Reduce from 20px */
+    text-decoration: none;
+    color: black;
+    border-color: #ffffff #858585 #858585 #ffffff;
+    background: #c0c0c0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     display: flex;
     align-items: center;
-    background-color: white;
-    padding: 0 10px;
     gap: 10px;
-    border-color: #858585 #ffffff #ffffff #858585;
-    background: #c0c0c0;
+}
+
+.home-button:hover {
+    background: #e0e0e0;
+}
+
+.home-button .home-logo {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
 }
 
 .home-button .nav-link {
@@ -467,3 +505,37 @@ nav {
     flex-direction: column;
     gap: 5px;
 }
+
+/* ...existing code... */
+
+.gallery-window {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 600px;
+    background: #c0c0c0;
+    border: 2px solid #858585;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 998;
+}
+
+.gallery-window.hidden {
+    display: none;
+}
+
+.gallery-window .window-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    padding: var(--window-padding);
+}
+
+.gallery-icon.active {
+    border-color: #858585 #ffffff #ffffff #858585;
+    background: #a0a0a0;
+}
+
+/* ...existing code... */
