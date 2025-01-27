@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <button id="toggle-sidebar">Toggle Sidebar</button>
     <div class="main-content">
         <div class="window-controls">
             <div class="window-title">My Profile</div>
@@ -27,27 +26,69 @@
     </div>
 
     <div class="sidebar">
-        <div class="home-button">
-            <img src="logo.png" alt="Logo" class="logo">
-            <a href="#" class="nav-link">Home</a>
+        <div class="window-controls">
+            <div class="window-title">Navigation</div>
+            <div class="control-buttons">
+                <button id="toggle-sidebar" class="window-button minimize">−</button>
+            </div>
         </div>
-        <nav>
-            <a href="#projects" class="nav-link">Projects</a>
-            <a href="#blog" class="nav-link">Blog</a>
-            <a href="#about" class="nav-link">About Me</a>
-            <a href="#contact" class="nav-link">Contact</a>
-            <a href="#resume" class="nav-link">Resume</a>
-        </nav>
+        <div class="window-content">
+            <div class="home-button">
+                <img src="logo.png" alt="Logo" class="logo">
+                <a href="#" class="nav-link">Home</a>
+            </div>
+            <nav>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#blog" class="nav-link">Blog</a>
+                <a href="#about" class="nav-link">About Me</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="#resume" class="nav-link">Resume</a>
+            </nav>
+        </div>
     </div>
+    
+    <div class="taskbar">
+        <button class="start-button">
+            <img src="windows-logo.png" alt="Start" class="start-logo">
+            <span>Start</span>
+        </button>
+        <div class="taskbar-icons">
+            <button class="taskbar-icon search-icon" title="Toggle Sidebar">
+                <span class="icon">🔍</span>
+            </button>
+            <!-- Add more icons as needed -->
+        </div>
+        <div class="taskbar-tray">
+            <span class="clock">12:00 PM</span>
+        </div>
+    </div>
+
     <script>
         const toggleButton = document.getElementById('toggle-sidebar');
+        const searchIcon = document.querySelector('.search-icon');
         const sidebar = document.querySelector('.sidebar');
         const mainContent = document.querySelector('.main-content');
 
-        toggleButton.addEventListener('click', () => {
+        function toggleSidebar() {
             sidebar.classList.toggle('collapsed');
             mainContent.classList.toggle('full-width');
-        });
+        }
+
+        toggleButton.addEventListener('click', toggleSidebar);
+        searchIcon.addEventListener('click', toggleSidebar);
+
+        // Add clock functionality
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('en-US', { 
+                hour: 'numeric', 
+                minute: '2-digit'
+            });
+            document.querySelector('.clock').textContent = timeString;
+        }
+        
+        setInterval(updateClock, 1000);
+        updateClock();
     </script>
 </body>
 </html>

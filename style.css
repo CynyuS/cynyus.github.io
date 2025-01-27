@@ -14,6 +14,7 @@ body {
     transition: margin-left 0.3s ease;
     margin-left: 262px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 40px;  /* Give space for taskbar */
 }
 
 .main-content.full-width {
@@ -38,34 +39,64 @@ body {
 
 .sidebar {
     width: 200px;
-    background-color: var(--color-4);
-    border-right: 2px solid var(--color-5);
+    background-color: #c0c0c0;
+    border: 2px solid #858585;
     position: fixed;
-    top: 0;
-    bottom: 0;
-    padding: 20px;
+    top: 20px;
+    bottom: 40px;  /* Adjust sidebar to stop above taskbar */
+    left: 20px;
+    padding: 0;
     transition: transform 0.3s ease;
     transform: translateX(0);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar .window-content {
+    height: calc(100% - 28px);
+    overflow-y: auto;
 }
 
 .sidebar.collapsed {
-    transform: translateX(-100%);
+    transform: translateX(calc(-100% + 30px));
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.sidebar.collapsed .window-content,
+.sidebar.collapsed .window-title {
+    display: none;
+}
+
+.sidebar.collapsed .window-controls {
+    height: 100%;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    background: linear-gradient(0deg, #000080, #1084d0);
+    border: 2px solid #858585;
+    width: 28px;
+}
+
+.sidebar.collapsed .control-buttons {
+    transform: rotate(90deg);
+    position: absolute;
+    bottom: 10px;
+    left: -4px;
 }
 
 #toggle-sidebar {
-    position: fixed;
-    top: 20px;
-    left: 220px;
-    z-index: 1000;
-    padding: 8px 12px;
-    background-color: var(--color-4);
-    border: 2px solid var(--color-5);
-    cursor: pointer;
-    transition: left 0.3s ease;
+    position: static;
+    background: #c0c0c0;
+    border: 1px solid white;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    transition: none;
 }
 
 #toggle-sidebar:hover {
-    background-color: var(--color-2);
+    background: #e0e0e0;
 }
 
 .sidebar.collapsed + #toggle-sidebar {
@@ -82,6 +113,8 @@ body {
     background-color: white;
     padding: 0 10px;
     gap: 10px;
+    border-color: #858585 #ffffff #ffffff #858585;
+    background: #c0c0c0;
 }
 
 .home-button .nav-link {
@@ -104,10 +137,13 @@ body {
     border: 2px solid var(--color-5);
     text-decoration: none;
     color: black;
+    border-color: #ffffff #858585 #858585 #ffffff;
+    background: #c0c0c0;
 }
 
 .nav-link:hover {
     background-color: #d0d0d0;
+    background: #e0e0e0;
 }
 
 /* Remove or comment out the old standalone .logo class since we're using img now */
@@ -191,4 +227,81 @@ body {
     border: 2px solid;
     border-color: #ffffff #858585 #858585 #ffffff;
     background: white;
+}
+
+.taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background-color: #c0c0c0;
+    border-top: 2px solid #ffffff;
+    display: flex;
+    align-items: center;
+    padding: 0 2px;
+    z-index: 1000;
+}
+
+.start-button {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 6px;
+    height: 24px;
+    margin: 2px;
+    font-weight: bold;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #858585 #858585 #ffffff;
+    cursor: pointer;
+}
+
+.start-button:active {
+    border-color: #858585 #ffffff #ffffff #858585;
+}
+
+.start-logo {
+    width: 16px;
+    height: 16px;
+}
+
+.taskbar-icons {
+    display: flex;
+    gap: 4px;
+    margin-left: 4px;
+    border-left: 2px solid #858585;
+    border-right: 2px solid #ffffff;
+    padding: 0 4px;
+}
+
+.taskbar-icon {
+    width: 26px;
+    height: 26px;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #858585 #858585 #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.taskbar-icon:active {
+    border-color: #858585 #ffffff #ffffff #858585;
+}
+
+.taskbar-tray {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    border: 2px solid;
+    border-color: #858585 #ffffff #ffffff #858585;
+    padding: 0 8px;
+    height: 24px;
+}
+
+.clock {
+    font-family: 'Digital', 'Courier New', Courier, monospace;
+    font-size: 12px;
 }
