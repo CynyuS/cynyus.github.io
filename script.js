@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const searchIcon = document.querySelector('.search-icon');
+    const startButton = document.querySelector('.start-button');
     const sidebar = document.querySelector('.sidebar');
     const mainContent = document.querySelector('.main-content');
 
     function toggleSidebar() {
         sidebar.classList.toggle('collapsed');
         mainContent.classList.toggle('sidebar-expanded');
-        searchIcon.classList.toggle('active');
+        startButton.classList.toggle('active');
     }
 
     // Initialize sidebar state
@@ -14,7 +14,11 @@ document.addEventListener('DOMContentLoaded', function() {
         mainContent.classList.add('sidebar-expanded');
     }
 
-    searchIcon.addEventListener('click', toggleSidebar);
+    startButton.addEventListener('click', toggleSidebar);
+
+    // Add event listener for sidebar minimize button
+    const sidebarMinimizeBtn = document.getElementById('toggle-sidebar');
+    sidebarMinimizeBtn.addEventListener('click', toggleSidebar);
 
     // Add clock functionality
     function updateClock() {
