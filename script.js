@@ -107,4 +107,93 @@ document.addEventListener('DOMContentLoaded', function() {
             makeDraggable(window);
         }
     });
+
+    // Window management
+    const appIcons = document.querySelector('.app-icons');
+    
+    // Handle nav link clicks
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const windowClass = e.currentTarget.getAttribute('href').substring(1) + '-window';
+            const window = document.querySelector(`.${windowClass}`);
+            if (window) {
+                window.classList.remove('hidden');
+                makeActive(window);
+            }
+        });
+    });
+
+    // Handle window controls
+    document.querySelectorAll('.app-window').forEach(window => {
+        const minBtn = window.querySelector('.minimize');
+        const maxBtn = window.querySelector('.maximize');
+        const closeBtn = window.querySelector('.close');
+        const windowName = window.dataset.windowName;
+        const icon = window.querySelector('.nav-icon')?.src || 'logo.png';
+
+        if (minBtn) {
+            minBtn.addEventListener('click', () => minimizeWindow(window, windowName, icon));
+        }
+        if (maxBtn) {
+            maxBtn.addEventListener('click', () => maximizeWindow(window));
+        }
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => closeWindow(window));
+        }
+        
+        makeDraggable(window);
+    });
+
+    function minimizeWindow(window, windowName, iconSrc) {
+        window.classList.add('hidden');
+        
+        // Create taskbar icon if it doesn't exist
+        let taskbarIcon = document.querySelector(`.app-taskbar-icon[data-window="${windowName}"]`);
+        if (!taskbarIcon) {
+            taskbarIcon = document.createElement('button');
+            taskbarIcon.className = 'app-taskbar-icon';
+            taskbarIcon.dataset.window = windowName;
+            taskbarIcon.innerHTML = `
+                <img src="${iconSrc}" alt="${windowName}">
+                <span>${windowName}</span>
+            `;
+            taskbarIcon.addEventListener('click', () => {
+                window.classList.remove('hidden');
+                makeActive(window);
+                taskbarIcon.remove();
+            });
+            appIcons.appendChild(taskbarIcon);
+        }
+    }
+
+    function closeWindow(window) {
+        window.classList.add('hidden');
+        const taskbarIcon = document.querySelector(
+            `.app-taskbar-icon[data-window="${window.dataset.windowName}"]`
+        );
+        if (taskbarIcon) {
+            taskbarIcon.remove();
+        }
+    }
+
+    function maximizeWindow(window) {
+        if (window.style.width === '100%') {
+            window.style.width = '80%';
+            window.style.height = '60%';
+            window.style.top = '20%';
+            window.style.left = '20%';
+        } else {
+            window.style.width = '100%';
+            window.style.height = '100%';
+            window.style.top = '0';
+            window.style.left = '0';
+        }
+    }
+
+    function makeActive(window) {
+        const maxZ = Math.max(...Array.from(document.querySelectorAll('.app-window'))
+            .map(w => parseInt(getComputedStyle(w).zIndex) || 0));
+        window.style.zIndex = maxZ + 1;
+    }
 });
