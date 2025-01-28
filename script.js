@@ -53,6 +53,16 @@ document.addEventListener('DOMContentLoaded', function() {
         let xOffset = 0;
         let yOffset = 0;
 
+        // Get initial position if already transformed
+        const existingTransform = window.style.transform;
+        if (existingTransform) {
+            const match = existingTransform.match(/translate\((-?\d+)px,\s*(-?\d+)px\)/);
+            if (match) {
+                xOffset = parseInt(match[1]);
+                yOffset = parseInt(match[2]);
+            }
+        }
+
         header.addEventListener('mousedown', e => {
             if (e.target === header || e.target.classList.contains('window-title')) {
                 isDragging = true;
