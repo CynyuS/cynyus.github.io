@@ -83,6 +83,10 @@ body {
     width: calc(100% - 2 * var(--window-margin));
 }
 
+.main-content.hidden {
+    display: none;
+}
+
 .main-content .window-content {
     padding: var(--window-padding);
     display: flex;
@@ -655,8 +659,8 @@ nav {
 
 .app-window {
     position: fixed;
-    top: 20%;
-    left: 20%;
+    top: 20vh;
+    left: 20vw;
     width: 80%;
     max-width: 600px;
     background: #c0c0c0;
@@ -666,6 +670,7 @@ nav {
     user-select: none;
     display: flex;
     flex-direction: column;
+    /* Remove the transform property */
 }
 
 .app-window.hidden {

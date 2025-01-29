@@ -73,14 +73,41 @@ document.addEventListener('DOMContentLoaded', function() {
                 initialX = e.clientX - xOffset;
                 initialY = e.clientY - yOffset;
                 window.style.cursor = 'grabbing';
+                makeActive(window); // Make window active when starting to drag
             }
         });
 
         document.addEventListener('mousemove', e => {
             if (isDragging) {
                 e.preventDefault();
+                
+                // Calculate new position
                 currentX = e.clientX - initialX;
                 currentY = e.clientY - initialY;
+
+                // Get viewport dimensions
+                const viewportWidth = document.documentElement.clientWidth;
+                const viewportHeight = document.documentElement.clientHeight;
+                const taskbarHeight = parseInt(getComputedStyle(document.documentElement)
+                    .getPropertyValue('--taskbar-height'));
+
+                // Get window dimensions and position
+                const rect = window.getBoundingClientRect();
+                
+                // Calculate absolute position including transform
+                const absoluteX = rect.left + (currentX - xOffset);
+                const absoluteY = rect.top + (currentY - yOffset);
+
+                // Apply boundaries based on absolute position
+                if (absoluteX < 0) currentX -= absoluteX;
+                if (absoluteX + rect.width > viewportWidth) {
+                    currentX += viewportWidth - (absoluteX + rect.width);
+                }
+                if (absoluteY < 0) currentY -= absoluteY;
+                if (absoluteY + rect.height > viewportHeight - taskbarHeight) {
+                    currentY += (viewportHeight - taskbarHeight) - (absoluteY + rect.height);
+                }
+
                 xOffset = currentX;
                 yOffset = currentY;
 
@@ -92,7 +119,37 @@ document.addEventListener('DOMContentLoaded', function() {
             isDragging = false;
             window.style.cursor = 'default';
         });
+
+        // Add double-click to reset position
+        header.addEventListener('dblclick', e => {
+            if (e.target === header || e.target.classList.contains('window-title')) {
+                resetWindowPosition(window);
+            }
+        });
     }
+
+    function resetWindowPosition(window) {
+        // Calculate center position
+        const viewportWidth = document.documentElement.clientWidth;
+        const viewportHeight = document.documentElement.clientHeight;
+        const xPos = (viewportWidth * 0.2); // 20% from left
+        const yPos = (viewportHeight * 0.2); // 20% from top
+        
+        window.style.transform = `translate(${xPos}px, ${yPos}px)`;
+        window.style.width = '80%';
+        window.style.height = null;
+        makeActive(window);
+    }
+
+    // Add context menu for reset option
+    document.addEventListener('contextmenu', e => {
+        const header = e.target.closest('.window-controls');
+        if (header) {
+            e.preventDefault();
+            const window = header.closest('.app-window, .main-content, .gallery-window, .sidebar');
+            resetWindowPosition(window);
+        }
+    });
 
     // Make all windows draggable
     const windows = [
@@ -115,7 +172,24 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            const windowClass = e.currentTarget.getAttribute('href').substring(1) + '-window';
+            const href = e.currentTarget.getAttribute('href').substring(1);
+            
+            // Special case for About Me link
+            if (href === 'about') {
+                const mainWindow = document.querySelector('.main-content');
+                mainWindow.classList.remove('hidden');
+                makeActive(mainWindow);
+                
+                // Remove taskbar icon if it exists
+                const taskbarIcon = document.querySelector('.app-taskbar-icon[data-window="About Me"]');
+                if (taskbarIcon) {
+                    taskbarIcon.remove();
+                }
+                return;
+            }
+            
+            // Handle other windows
+            const windowClass = href + '-window';
             const window = document.querySelector(`.${windowClass}`);
             if (window) {
                 window.classList.remove('hidden');
@@ -144,6 +218,22 @@ document.addEventListener('DOMContentLoaded', function() {
         
         makeDraggable(window);
     });
+
+    // Add the main profile window to the window controls handling
+    const mainWindow = document.querySelector('.main-content');
+    const mainMinBtn = mainWindow.querySelector('.minimize');
+    const mainMaxBtn = mainWindow.querySelector('.maximize');
+    const mainCloseBtn = mainWindow.querySelector('.close');
+    
+    if (mainMinBtn) {
+        mainMinBtn.addEventListener('click', () => minimizeWindow(mainWindow, 'About Me', 'logo.png'));
+    }
+    if (mainMaxBtn) {
+        mainMaxBtn.addEventListener('click', () => maximizeWindow(mainWindow));
+    }
+    if (mainCloseBtn) {
+        mainCloseBtn.addEventListener('click', () => closeWindow(mainWindow));
+    }
 
     function minimizeWindow(window, windowName, iconSrc) {
         window.classList.add('hidden');
@@ -178,17 +268,30 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function maximizeWindow(window) {
+        const taskbarHeight = parseInt(getComputedStyle(document.documentElement)
+            .getPropertyValue('--taskbar-height'));
+            
         if (window.style.width === '100%') {
+            // Restore previous position
             window.style.width = '80%';
             window.style.height = '60%';
             window.style.top = '20%';
             window.style.left = '20%';
+            
+            // Re-enable transform for dragging
+            window.style.transform = null;
         } else {
+            // Save current position if needed for restore
+            
+            // Reset transform and set to full size
+            window.style.transform = 'none';
             window.style.width = '100%';
-            window.style.height = '100%';
+            window.style.height = `calc(100vh - ${taskbarHeight}px)`;
             window.style.top = '0';
             window.style.left = '0';
         }
+        
+        makeActive(window);
     }
 
     function makeActive(window) {
