@@ -1,0 +1,90 @@
+@use "sass:color";
+
+// Pink palette
+$rose-deep:    #3a0020;
+$rose-accent:  #e75480;
+$rose-nav:     #ffd6e8;
+$rose-border:  #ffb6cb;
+$rose-bg:      #fff8fb;
+$rose-content: #ffffff;
+
+// Dark mode palette
+$dark-bg:      #2d0a1a;
+$dark-content: #3d0d25;
+$dark-nav:     #4a0e2e;
+$dark-border:  #6b1a3e;
+$dark-accent:  #ff69b4;
+$dark-text:    #ffd6e8;
+
+// Win95 chrome (same in both modes)
+$chrome-border: #9a8090;
+$chrome-hi:     #eddde6;
+$chrome-lo:     #8a7080;
+
+// CRT effect variables (kept for _crt.scss compat)
+$crt-fg: $rose-nav;
+$crt-bg: $dark-bg;
+
+:root {
+  // Light mode is default
+  --bg-color:       #{$rose-bg};
+  --win-content:    #{$rose-content};
+  --win-titlebar:   #{$rose-nav};
+  --win-border:     #{$rose-border};
+  --fg-color:       #{$rose-deep};
+  --fg-muted-1:     rgba(231, 84, 128, 0.06);
+  --fg-muted-2:     rgba(231, 84, 128, 0.12);
+  --fg-muted-3:     rgba(231, 84, 128, 0.20);
+  --fg-muted-4:     rgba(58, 0, 32, 0.55);
+  --fg-muted-5:     rgba(58, 0, 32, 0.70);
+  --nav-bg:         #{$rose-nav};
+  --primary-color:  #{$rose-accent};
+  --primary-color-alpha: #{color.scale($rose-accent, $alpha: -80%)};
+  --header-color:   #{$rose-accent};
+  --blockquote-fg:  #{$rose-accent};
+
+  // CRT vars
+  --crt-bg:         #{$crt-bg};
+  --crt-fg:         #{$crt-fg};
+
+  // Win95 chrome
+  --chrome-border:  #{$chrome-border};
+  --chrome-hi:      #{$chrome-hi};
+  --chrome-lo:      #{$chrome-lo};
+
+  // Legacy vars kept for theme compat
+  --content-width:        720px;
+  --rounded-corner:       0px;
+  --rounded-corner-small: 0px;
+  --rounded-corner-smallest: 0px;
+  --active:         0.9;
+  --transition:     200ms;
+  --transition-long: 800ms;
+  --transition-longer: 400ms;
+  --transition-bezier: 350ms cubic-bezier(0.17, 0.89, 0.32, 1.28);
+  --shadow:         none;
+  --shadow-raised:  none;
+  --glow:           none;
+  --drop-shadow:    none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg-color:       #{$dark-bg};
+    --win-content:    #{$dark-content};
+    --win-titlebar:   #{$dark-nav};
+    --win-border:     #{$dark-border};
+    --fg-color:       #{$dark-text};
+    --fg-muted-1:     rgba(255, 105, 180, 0.06);
+    --fg-muted-2:     rgba(255, 105, 180, 0.12);
+    --fg-muted-3:     rgba(255, 105, 180, 0.20);
+    --fg-muted-4:     rgba(255, 214, 232, 0.55);
+    --fg-muted-5:     rgba(255, 214, 232, 0.70);
+    --nav-bg:         #{$dark-nav};
+    --primary-color:  #{$dark-accent};
+    --primary-color-alpha: #{color.scale($dark-accent, $alpha: -80%)};
+    --header-color:   #{$dark-accent};
+    --blockquote-fg:  #{$dark-text};
+  }
+}
