@@ -19,17 +19,11 @@ smart_punctuation = true
 [markdown.highlighting]
 code = true
 theme = "solarized-dark"
-themes_css = [
-  { theme = "solarized-dark", filename = "syntax-theme-dark.css" },
-  { theme = "solarized-light", filename = "syntax-theme-light.css" },
-]
-
 
 [extra]
 # Put all your custom variables here
 primary_color = "#ffdbf1"
 primary_color_alpha = "#fcc7e8"
-
 
 # If the favicon is GIF or not
 animated_favicon = false
