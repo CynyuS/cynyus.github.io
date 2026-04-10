@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% set artworks = section.extra.artworks | default(value=[]) %}
+<div class="win-outer art-gallery">
+
+  <div class="paint-titlebar">
+    <span class="paint-icon">🖼</span>
+    <span class="paint-title">Paint — [art portfolio]</span>
+    <div class="paint-controls">
+      <button class="paint-btn" aria-hidden="true">_</button>
+      <button class="paint-btn" aria-hidden="true">□</button>
+      <button class="paint-btn" aria-hidden="true">✕</button>
+    </div>
+  </div>
+
+  <div class="paint-menubar">
+    <span>File</span>
+    <span>Edit</span>
+    <span>View</span>
+    <span>Image</span>
+    <span>Help</span>
+  </div>
+
+  <div class="paint-main">
+    <div class="paint-toolbar">
+      <div class="paint-tool">✏️</div>
+      <div class="paint-tool">🪣</div>
+      <div class="paint-tool active">🔲</div>
+      <div class="paint-tool">〰️</div>
+    </div>
+
+    <div class="paint-canvas-wrap">
+      <div class="paint-canvas" id="paint-canvas">
+        {% for art in artworks %}
+        <div class="art-slide{% if loop.first %} active{% endif %}" data-index="{{ loop.index0 }}">
+          <img src="{{ get_url(path='art/' ~ art.file) }}" alt="{{ art.title }}">
+          <div class="art-caption">
+            <div class="art-caption-title">{{ art.title }}</div>
+            <div class="art-caption-meta">{{ art.medium }} · {{ art.date }}</div>
+          </div>
+        </div>
+        {% endfor %}
+        {% if artworks | length == 0 %}
+          <div style="padding: 2rem; text-align: center; color: var(--fg-muted-4);">No artworks yet.</div>
+        {% endif %}
+        <button class="paint-arrow paint-arrow-left" id="prev-btn" aria-label="Previous artwork">◀</button>
+        <button class="paint-arrow paint-arrow-right" id="next-btn" aria-label="Next artwork">▶</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="paint-palette">
+    <div class="paint-color" style="background:#000"></div>
+    <div class="paint-color" style="background:#ffffff"></div>
+    <div class="paint-color" style="background:#ffb6c1"></div>
+    <div class="paint-color" style="background:#e75480"></div>
+    <div class="paint-color" style="background:#6b0032"></div>
+    <div class="paint-color" style="background:#ff69b4"></div>
+    <div class="paint-color" style="background:#dda0dd"></div>
+    <div class="paint-color" style="background:#ffd6e8"></div>
+    <div class="paint-color" style="background:#9a8090"></div>
+    <div class="paint-color" style="background:#eddde6"></div>
+  </div>
+
+  <div class="paint-statusbar">
+    <div class="paint-status-cell" id="status-count">
+      {% if artworks | length > 0 %}1 of {{ artworks | length }}{% else %}0 of 0{% endif %}
+    </div>
+    <div class="paint-status-cell" id="status-filename">
+      {% if artworks | length > 0 %}{{ artworks[0].file }}{% else %}-{% endif %}
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var slides = document.querySelectorAll('.art-slide');
+  var countEl = document.getElementById('status-count');
+  var filenameEl = document.getElementById('status-filename');
+  var artworks = [{% for art in artworks %}{"file":"{{ art.file | safe }}","title":"{{ art.title | safe }}"}{% if not loop.last %},{% endif %}{% endfor %}];
+  var current = 0;
+  var total = slides.length;
+
+  if (total === 0) return;
+
+  function show(index) {
+    slides[current].classList.remove('active');
+    current = ((index % total) + total) % total;
+    slides[current].classList.add('active');
+    countEl.textContent = (current + 1) + ' of ' + total;
+    filenameEl.textContent = artworks[current] ? artworks[current].file : '-';
+  }
+
+  document.getElementById('prev-btn').addEventListener('click', function () { show(current - 1); });
+  document.getElementById('next-btn').addEventListener('click', function () { show(current + 1); });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft')  show(current - 1);
+    if (e.key === 'ArrowRight') show(current + 1);
+  });
+}());
+</script>
+{% endblock content %}
