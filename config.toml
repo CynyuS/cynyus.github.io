@@ -45,8 +45,8 @@ icons = true
 links = [
   {url = "$BASE_URL/blog", name = "Blog", pixel_icon = "blog.png"},
   {url = "/resume.pdf", name = "Resume", pixel_icon = "about.png"},
-  {url = "https://github.com/CynyuS", name = "", icon = "github"},
-  {url = "https://www.linkedin.com/in/cynthiashao25/", name = "", icon = "linkedin"},
+  {url = "https://github.com/CynyuS", name = "GitHub", icon = "github"},
+  {url = "https://www.linkedin.com/in/cynthiashao25/", name = "LinkedIn", icon = "linkedin"},
 ]
 
 [extra.footer]

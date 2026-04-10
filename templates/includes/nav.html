@@ -7,7 +7,7 @@
     <ul>
       {% for link in config.extra.nav.links %}
       <li>
-        <a href="{{ link.url | safe | replace(from='$BASE_URL', to=get_url(path='')) | safe }}">
+        <a href="{{ link.url | replace(from='$BASE_URL', to=get_url(path='')) | safe }}" aria-label="{{ link.name }}">
           {% if link.pixel_icon is defined %}
             <img src="{{ get_url(path='icons/' ~ link.pixel_icon) }}" alt="{{ link.name }}" class="nav-pixel-icon">
           {% elif link.icon is defined %}
