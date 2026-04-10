@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="win-outer">
+  <div class="win-titlebar">{{ section.title }}</div>
+  <div class="win-panel post-content">
+    {{ section.content | safe }}
+    {% if section.pages %}
+      <hr>
+      {% for page in section.pages %}
+        <h3><a href="{{ page.permalink | safe }}">{{ page.title }}</a></h3>
+        {% if page.description %}<p>{{ page.description }}</p>{% endif %}
+      {% endfor %}
+    {% endif %}
+  </div>
+</div>
+{% endblock content %}
