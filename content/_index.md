@@ -34,4 +34,6 @@ I'm a Cornell University Junior pursuing a B.S. in Computer Science and Electric
 
 My research interests lie at the intersection of hardware and software, particularly in the areas of hardware accelerators, compilers, computer architecture, and machine learning.
 
-I'm fortunate to be working with Adrian Sampson in the *Capra lab*, and Zhiru Zhang in the *Zhang Research Group* — a part of the *Computer Systems Lab*.
+I'm fortunate to be working with Adrian Sampson in the *Capra lab*, and Zhiru Zhang in the *Zhang Research Group* — both a part of the *Computer Systems Lab*.
+
+I am a lover of all things aerospace! Outside of research I am a part of the Autopilot subteam of CUAir, a project team where we build VTOL UAVs. 
