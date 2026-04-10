@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="win-outer">
+
+  <div class="win-panel hero-block">
+    <img src="{{ get_url(path='profile.jpg') }}" alt="{{ section.extra.name }}" class="profile-pic">
+    <div class="hero-text">
+      <h1>{{ section.extra.name }}</h1>
+      <p class="hero-role">{{ section.extra.role }}</p>
+      {{ section.content | safe }}
+    </div>
+  </div>
+
+  <div class="explore-label">EXPLORE</div>
+
+  <div class="explore-grid">
+    {% for card in section.extra.cards %}
+    <a href="{{ card.url }}" class="win-panel explore-card">
+      <img src="{{ get_url(path='icons/' ~ card.icon) }}" alt="{{ card.title }}" class="card-icon">
+      <div>
+        <div class="card-title">{{ card.title }}</div>
+        <div class="card-desc">{{ card.desc }}</div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+
+</div>
+{% endblock content %}
