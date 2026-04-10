@@ -1,0 +1,22 @@
+<header>
+  <nav>
+    <a href="{{ get_url(path='') }}" class="nav-brand">
+      <img src="{{ get_url(path='icons/logo.png') }}" alt="{{ config.title }}" class="nav-logo">
+      {{ config.title }}
+    </a>
+    <ul>
+      {% for link in config.extra.nav.links %}
+      <li>
+        <a href="{{ link.url | safe | replace(from='$BASE_URL', to=get_url(path='')) | safe }}">
+          {% if link.pixel_icon is defined %}
+            <img src="{{ get_url(path='icons/' ~ link.pixel_icon) }}" alt="{{ link.name }}" class="nav-pixel-icon">
+          {% elif link.icon is defined %}
+            <i class="bi bi-{{ link.icon }}"></i>
+          {% endif %}
+          {{ link.name }}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </nav>
+</header>
