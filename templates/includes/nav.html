@@ -1,3 +1,10 @@
+<script>
+// Apply stored theme before first paint to avoid flash
+(function () {
+  var t = localStorage.getItem('theme');
+  if (t) document.documentElement.setAttribute('data-theme', t);
+}());
+</script>
 <header>
   <nav>
     <a href="{{ get_url(path='') }}" class="nav-brand">
@@ -18,5 +25,26 @@
       </li>
       {% endfor %}
     </ul>
+    <button id="theme-toggle" class="nav-theme-toggle" aria-label="Toggle light/dark mode">☾</button>
   </nav>
 </header>
+<script>
+(function () {
+  var btn = document.getElementById('theme-toggle');
+  function isDark() {
+    var t = document.documentElement.getAttribute('data-theme');
+    return t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  }
+  function sync() {
+    btn.textContent = isDark() ? '☀' : '☾';
+    btn.setAttribute('aria-label', isDark() ? 'Switch to light mode' : 'Switch to dark mode');
+  }
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    sync();
+  });
+  sync();
+}());
+</script>
