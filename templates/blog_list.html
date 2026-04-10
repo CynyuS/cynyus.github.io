@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="win-outer">
+  <div class="win-titlebar">📓 {{ section.title }}</div>
+  <div class="blog-list">
+    {% for page in section.pages %}
+    <a href="{{ page.permalink | safe }}" class="win-panel blog-row">
+      <div>
+        <div class="blog-row-title">{{ page.title }}</div>
+        {% if page.description %}
+          <div class="blog-row-desc">{{ page.description }}</div>
+        {% endif %}
+      </div>
+      {% if page.date %}
+        <time class="blog-row-date" datetime="{{ page.date | date(format='%+') }}">
+          {{ page.date | date(format=config.extra.date_format) }}
+        </time>
+      {% endif %}
+    </a>
+    {% endfor %}
+    {% if section.pages | length == 0 %}
+      <div class="win-panel">No posts yet.</div>
+    {% endif %}
+  </div>
+</div>
+{% endblock content %}
