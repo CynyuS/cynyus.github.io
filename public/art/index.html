@@ -141,10 +141,98 @@
       <div class="paint-canvas" id="paint-canvas">
         
         <div class="art-slide active" data-index="0">
-          <img src="https://cynyus.github.io/art/placeholder.jpg" alt="Example Artwork">
+          <img src="https://cynyus.github.io/art/curiosity.jpg" alt="curiosity">
           <div class="art-caption">
-            <div class="art-caption-title">Example Artwork</div>
-            <div class="art-caption-meta">your medium here · 2025</div>
+            <div class="art-caption-title">curiosity</div>
+            <div class="art-caption-meta">Acrylic paint, canvas · 06&#x2F;12&#x2F;2022</div>
+          </div>
+        </div>
+        
+        <div class="art-slide" data-index="1">
+          <img src="https://cynyus.github.io/art/anger.jpg" alt="anger">
+          <div class="art-caption">
+            <div class="art-caption-title">anger</div>
+            <div class="art-caption-meta">Acrylic painting, Canvas · 08&#x2F;26&#x2F;2022</div>
+          </div>
+        </div>
+        
+        <div class="art-slide" data-index="2">
+          <img src="https://cynyus.github.io/art/sole_bloom.jpg" alt="sole bloom">
+          <div class="art-caption">
+            <div class="art-caption-title">sole bloom</div>
+            <div class="art-caption-meta">Acrylic painting, hot-pressed paper · 07&#x2F;3&#x2F;2019</div>
+          </div>
+        </div>
+        
+        <div class="art-slide" data-index="3">
+          <img src="https://cynyus.github.io/art/jackalope.jpg" alt="jackalope">
+          <div class="art-caption">
+            <div class="art-caption-title">jackalope</div>
+            <div class="art-caption-meta">Alcohol inks, ceramic cones, ceramic tile · 01&#x2F;11&#x2F;2020</div>
+          </div>
+        </div>
+        
+        <div class="art-slide" data-index="4">
+          <img src="https://cynyus.github.io/art/dinos.jpg" alt="sticker park">
+          <div class="art-caption">
+            <div class="art-caption-title">sticker park</div>
+            <div class="art-caption-meta">Acrylic paint, hot-pressed paper · 09&#x2F;29&#x2F;2019</div>
+          </div>
+        </div>
+        
+        <div class="art-slide" data-index="5">
+          <img src="https://cynyus.github.io/art/waiting_room.jpg" alt="the waiting room">
+          <div class="art-caption">
+            <div class="art-caption-title">the waiting room</div>
+            <div class="art-caption-meta">Acrylic paint, canvas · 11&#x2F;12&#x2F;2021</div>
+          </div>
+        </div>
+        
+        <div class="art-slide" data-index="6">
+          <img src="https://cynyus.github.io/art/lion.jpg" alt="spring festival">
+          <div class="art-caption">
+            <div class="art-caption-title">spring festival</div>
+            <div class="art-caption-meta">Clay, cardboard board · 08&#x2F;24&#x2F;2019</div>
+          </div>
+        </div>
+        
+        <div class="art-slide" data-index="7">
+          <img src="https://cynyus.github.io/art/peonies.jpg" alt="twin peonies">
+          <div class="art-caption">
+            <div class="art-caption-title">twin peonies</div>
+            <div class="art-caption-meta">Gouache paint, hot-pressed paper · 06&#x2F;14&#x2F;2019</div>
+          </div>
+        </div>
+        
+        <div class="art-slide" data-index="8">
+          <img src="https://cynyus.github.io/art/phoenix.jpg" alt="freebird">
+          <div class="art-caption">
+            <div class="art-caption-title">freebird</div>
+            <div class="art-caption-meta">Watercolor paint, foam board, glue, hot-pressed paper · 05&#x2F;22&#x2F;2019</div>
+          </div>
+        </div>
+        
+        <div class="art-slide" data-index="9">
+          <img src="https://cynyus.github.io/art/saruh.jpg" alt="nighttime consumerism">
+          <div class="art-caption">
+            <div class="art-caption-title">nighttime consumerism</div>
+            <div class="art-caption-meta">Acrylic painting, canvas · 09&#x2F;17&#x2F;2021</div>
+          </div>
+        </div>
+        
+        <div class="art-slide" data-index="10">
+          <img src="https://cynyus.github.io/art/taxi.jpg" alt="i wish i were there">
+          <div class="art-caption">
+            <div class="art-caption-title">i wish i were there</div>
+            <div class="art-caption-meta">Acrylic painting, canvas · 04&#x2F;12&#x2F;2020</div>
+          </div>
+        </div>
+        
+        <div class="art-slide" data-index="11">
+          <img src="https://cynyus.github.io/art/watercolor_bridge.jpg" alt="saturday morning walk">
+          <div class="art-caption">
+            <div class="art-caption-title">saturday morning walk</div>
+            <div class="art-caption-meta">Watercolor paint, hot-pressed paper · 12&#x2F;05&#x2F;2020</div>
           </div>
         </div>
         
@@ -170,10 +258,10 @@
 
   <div class="paint-statusbar">
     <div class="paint-status-cell" id="status-count">
-      1 of 1
+      1 of 12
     </div>
     <div class="paint-status-cell" id="status-filename">
-      placeholder.jpg
+      curiosity.jpg
     </div>
   </div>
 
@@ -184,7 +272,7 @@
   var slides = document.querySelectorAll('.art-slide');
   var countEl = document.getElementById('status-count');
   var filenameEl = document.getElementById('status-filename');
-  var artworks = [{"file":"placeholder.jpg","title":"Example Artwork"}];
+  var artworks = [{"file":"curiosity.jpg","title":"curiosity"},{"file":"anger.jpg","title":"anger"},{"file":"sole_bloom.jpg","title":"sole bloom"},{"file":"jackalope.jpg","title":"jackalope"},{"file":"dinos.jpg","title":"sticker park"},{"file":"waiting_room.jpg","title":"the waiting room"},{"file":"lion.jpg","title":"spring festival"},{"file":"peonies.jpg","title":"twin peonies"},{"file":"phoenix.jpg","title":"freebird"},{"file":"saruh.jpg","title":"nighttime consumerism"},{"file":"taxi.jpg","title":"i wish i were there"},{"file":"watercolor_bridge.jpg","title":"saturday morning walk"}];
   var current = 0;
   var total = slides.length;
 
@@ -210,7 +298,7 @@
 </div>
   <footer class="footer">
   
-  <p title="Last built at 2026-04-09 22:39 -04:00"><small>&copy; Cynthia&#x27;s Website, 2026</small></p>
+  <p title="Last built at 2026-04-10 14:40 -04:00"><small>&copy; Cynthia&#x27;s Website, 2026</small></p>
   
 
   
