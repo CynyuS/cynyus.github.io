@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#ffdbf1" />
+  <link rel="canonical" href="https:&#x2F;&#x2F;cynyus.github.io&#x2F;" />
+
+  <title>
+     Home - Cynthia&#x27;s Website
+    
+  </title>
+
+  <link rel="stylesheet" href="https://cynyus.github.io/style.css" />
+  
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Cynthia&#x27;s Website" />
+  <meta property="og:title" content="
+     Home - Cynthia&#x27;s Website
+    " />
+  <meta property="og:url" content="https:&#x2F;&#x2F;cynyus.github.io&#x2F;" />
+  <meta property="og:description" content="" />
+  <meta property="og:image" content="https://cynyus.github.io/card.png" />
+  <meta property="twitter:card" content="summary_large_image" />
+</head>
+<body>
+  <script>
+// Apply stored theme before first paint to avoid flash
+(function () {
+  var t = localStorage.getItem('theme');
+  if (t) document.documentElement.setAttribute('data-theme', t);
+}());
+</script>
+<header>
+  <nav>
+    <a href="https://cynyus.github.io" class="nav-brand">
+      <img src="https://cynyus.github.io/icons/logo.png" alt="Cynthia&#x27;s Website" class="nav-logo">
+      Cynthia&#x27;s Website
+    </a>
+    <ul>
+      
+      <li>
+        <a href="https://cynyus.github.io/blog" aria-label="Blog">
+          
+            <img src="https://cynyus.github.io/icons/blog.png" alt="Blog" class="nav-pixel-icon">
+          
+          Blog
+        </a>
+      </li>
+      
+      <li>
+        <a href="/resume.pdf" aria-label="Resume">
+          
+            <img src="https://cynyus.github.io/icons/about.png" alt="Resume" class="nav-pixel-icon">
+          
+          Resume
+        </a>
+      </li>
+      
+      <li>
+        <a href="https://github.com/CynyuS" aria-label="GitHub">
+          
+            <i class="bi bi-github"></i>
+          
+          GitHub
+        </a>
+      </li>
+      
+      <li>
+        <a href="https://www.linkedin.com/in/cynthiashao25/" aria-label="LinkedIn">
+          
+            <i class="bi bi-linkedin"></i>
+          
+          LinkedIn
+        </a>
+      </li>
+      
+    </ul>
+    <button id="theme-toggle" class="nav-theme-toggle" aria-label="Toggle light/dark mode">☾</button>
+  </nav>
+</header>
+<script>
+(function () {
+  var btn = document.getElementById('theme-toggle');
+  function isDark() {
+    var t = document.documentElement.getAttribute('data-theme');
+    return t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  }
+  function sync() {
+    btn.textContent = isDark() ? '☀' : '☾';
+    btn.setAttribute('aria-label', isDark() ? 'Switch to light mode' : 'Switch to dark mode');
+  }
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    sync();
+  });
+  sync();
+}());
+</script>
+<div class="container">
+  
+<div class="win-outer">
+
+  <div class="win-panel hero-block">
+    <img src="https://cynyus.github.io/profile.jpg" alt="Cynthia Shao" class="profile-pic">
+    <div class="hero-text">
+      <h1>Cynthia Shao</h1>
+      <p class="hero-role">Cornell University · CS &amp; ECE</p>
+      <p>I’m a Cornell University Junior pursuing a B.S. in Computer Science and Electrical and Computer Engineering.</p>
+<p>My research interests lie at the intersection of hardware and software, particularly in the areas of hardware accelerators, compilers, computer architecture, and machine learning.</p>
+<p>I’m fortunate to be working with Adrian Sampson in the <em>Capra lab</em>, and Zhiru Zhang in the <em>Zhang Research Group</em> — a part of the <em>Computer Systems Lab</em>.</p>
+
+    </div>
+  </div>
+
+  <div class="explore-label">EXPLORE</div>
+
+  <div class="explore-grid">
+    
+    <a href="&#x2F;blog" class="win-panel explore-card">
+      <img src="https://cynyus.github.io/icons/blog.png" alt="Blog" class="card-icon">
+      <div>
+        <div class="card-title">Blog</div>
+        <div class="card-desc">Thoughts &amp; notes</div>
+      </div>
+    </a>
+    
+    <a href="&#x2F;projects" class="win-panel explore-card">
+      <img src="https://cynyus.github.io/icons/projects.png" alt="Projects" class="card-icon">
+      <div>
+        <div class="card-title">Projects</div>
+        <div class="card-desc">What I&#x27;ve built</div>
+      </div>
+    </a>
+    
+    <a href="&#x2F;art" class="win-panel explore-card">
+      <img src="https://cynyus.github.io/icons/projects.png" alt="Art Portfolio" class="card-icon">
+      <div>
+        <div class="card-title">Art Portfolio</div>
+        <div class="card-desc">Sketches &amp; illustrations</div>
+      </div>
+    </a>
+    
+    <a href="&#x2F;hobbies" class="win-panel explore-card">
+      <img src="https://cynyus.github.io/icons/projects.png" alt="Hobbies" class="card-icon">
+      <div>
+        <div class="card-title">Hobbies</div>
+        <div class="card-desc">Other interests</div>
+      </div>
+    </a>
+    
+  </div>
+
+</div>
+</div>
+  <footer class="footer">
+  
+  <p title="Last built at 2026-04-09 22:17 -04:00"><small>&copy; Cynthia&#x27;s Website, 2026</small></p>
+  
+
+  
+
+  
+    <p><small>Powered by <a href="https://www.getzola.org">Zola</a> and <a href="https://daudix.codeberg.page/duckquill">Duckquill</a></small></p>
+  
+</footer>
+</body>
+
+</html>

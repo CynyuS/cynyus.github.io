@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#ffdbf1" />
+  <link rel="canonical" href="https:&#x2F;&#x2F;cynyus.github.io&#x2F;art&#x2F;" />
+
+  <title>
+     Art Portfolio - Cynthia&#x27;s Website
+    
+  </title>
+
+  <link rel="stylesheet" href="https://cynyus.github.io/style.css" />
+  
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Cynthia&#x27;s Website" />
+  <meta property="og:title" content="
+     Art Portfolio - Cynthia&#x27;s Website
+    " />
+  <meta property="og:url" content="https:&#x2F;&#x2F;cynyus.github.io&#x2F;art&#x2F;" />
+  <meta property="og:description" content="" />
+  <meta property="og:image" content="https://cynyus.github.io/card.png" />
+  <meta property="twitter:card" content="summary_large_image" />
+</head>
+<body>
+  <script>
+// Apply stored theme before first paint to avoid flash
+(function () {
+  var t = localStorage.getItem('theme');
+  if (t) document.documentElement.setAttribute('data-theme', t);
+}());
+</script>
+<header>
+  <nav>
+    <a href="https://cynyus.github.io" class="nav-brand">
+      <img src="https://cynyus.github.io/icons/logo.png" alt="Cynthia&#x27;s Website" class="nav-logo">
+      Cynthia&#x27;s Website
+    </a>
+    <ul>
+      
+      <li>
+        <a href="https://cynyus.github.io/blog" aria-label="Blog">
+          
+            <img src="https://cynyus.github.io/icons/blog.png" alt="Blog" class="nav-pixel-icon">
+          
+          Blog
+        </a>
+      </li>
+      
+      <li>
+        <a href="/resume.pdf" aria-label="Resume">
+          
+            <img src="https://cynyus.github.io/icons/about.png" alt="Resume" class="nav-pixel-icon">
+          
+          Resume
+        </a>
+      </li>
+      
+      <li>
+        <a href="https://github.com/CynyuS" aria-label="GitHub">
+          
+            <i class="bi bi-github"></i>
+          
+          GitHub
+        </a>
+      </li>
+      
+      <li>
+        <a href="https://www.linkedin.com/in/cynthiashao25/" aria-label="LinkedIn">
+          
+            <i class="bi bi-linkedin"></i>
+          
+          LinkedIn
+        </a>
+      </li>
+      
+    </ul>
+    <button id="theme-toggle" class="nav-theme-toggle" aria-label="Toggle light/dark mode">☾</button>
+  </nav>
+</header>
+<script>
+(function () {
+  var btn = document.getElementById('theme-toggle');
+  function isDark() {
+    var t = document.documentElement.getAttribute('data-theme');
+    return t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  }
+  function sync() {
+    btn.textContent = isDark() ? '☀' : '☾';
+    btn.setAttribute('aria-label', isDark() ? 'Switch to light mode' : 'Switch to dark mode');
+  }
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    sync();
+  });
+  sync();
+}());
+</script>
+<div class="container">
+  
+
+<div class="win-outer art-gallery">
+
+  <div class="paint-titlebar">
+    <span class="paint-icon">🖼</span>
+    <span class="paint-title">Paint — [art portfolio]</span>
+    <div class="paint-controls">
+      <button class="paint-btn" aria-hidden="true">_</button>
+      <button class="paint-btn" aria-hidden="true">□</button>
+      <button class="paint-btn" aria-hidden="true">✕</button>
+    </div>
+  </div>
+
+  <div class="paint-menubar">
+    <span>File</span>
+    <span>Edit</span>
+    <span>View</span>
+    <span>Image</span>
+    <span>Help</span>
+  </div>
+
+  <div class="paint-main">
+    <div class="paint-toolbar">
+      <div class="paint-tool">✏️</div>
+      <div class="paint-tool">🪣</div>
+      <div class="paint-tool active">🔲</div>
+      <div class="paint-tool">〰️</div>
+    </div>
+
+    <div class="paint-canvas-wrap">
+      <div class="paint-canvas" id="paint-canvas">
+        
+        <div class="art-slide active" data-index="0">
+          <img src="https://cynyus.github.io/art/placeholder.jpg" alt="Example Artwork">
+          <div class="art-caption">
+            <div class="art-caption-title">Example Artwork</div>
+            <div class="art-caption-meta">your medium here · 2025</div>
+          </div>
+        </div>
+        
+        
+        <button class="paint-arrow paint-arrow-left" id="prev-btn" aria-label="Previous artwork">◀</button>
+        <button class="paint-arrow paint-arrow-right" id="next-btn" aria-label="Next artwork">▶</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="paint-palette">
+    <div class="paint-color" style="background:#000"></div>
+    <div class="paint-color" style="background:#ffffff"></div>
+    <div class="paint-color" style="background:#ffb6c1"></div>
+    <div class="paint-color" style="background:#e75480"></div>
+    <div class="paint-color" style="background:#6b0032"></div>
+    <div class="paint-color" style="background:#ff69b4"></div>
+    <div class="paint-color" style="background:#dda0dd"></div>
+    <div class="paint-color" style="background:#ffd6e8"></div>
+    <div class="paint-color" style="background:#9a8090"></div>
+    <div class="paint-color" style="background:#eddde6"></div>
+  </div>
+
+  <div class="paint-statusbar">
+    <div class="paint-status-cell" id="status-count">
+      1 of 1
+    </div>
+    <div class="paint-status-cell" id="status-filename">
+      placeholder.jpg
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var slides = document.querySelectorAll('.art-slide');
+  var countEl = document.getElementById('status-count');
+  var filenameEl = document.getElementById('status-filename');
+  var artworks = [{"file":"placeholder.jpg","title":"Example Artwork"}];
+  var current = 0;
+  var total = slides.length;
+
+  if (total === 0) return;
+
+  function show(index) {
+    slides[current].classList.remove('active');
+    current = ((index % total) + total) % total;
+    slides[current].classList.add('active');
+    countEl.textContent = (current + 1) + ' of ' + total;
+    filenameEl.textContent = artworks[current] ? artworks[current].file : '-';
+  }
+
+  document.getElementById('prev-btn').addEventListener('click', function () { show(current - 1); });
+  document.getElementById('next-btn').addEventListener('click', function () { show(current + 1); });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft')  show(current - 1);
+    if (e.key === 'ArrowRight') show(current + 1);
+  });
+}());
+</script>
+</div>
+  <footer class="footer">
+  
+  <p title="Last built at 2026-04-09 22:17 -04:00"><small>&copy; Cynthia&#x27;s Website, 2026</small></p>
+  
+
+  
+
+  
+    <p><small>Powered by <a href="https://www.getzola.org">Zola</a> and <a href="https://daudix.codeberg.page/duckquill">Duckquill</a></small></p>
+  
+</footer>
+</body>
+
+</html>

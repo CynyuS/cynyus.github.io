@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#ffdbf1" />
+  <link rel="canonical" href="https:&#x2F;&#x2F;cynyus.github.io&#x2F;blog&#x2F;first&#x2F;" />
+
+  <title>
+     My first post - Cynthia&#x27;s Website
+    
+  </title>
+
+  <link rel="stylesheet" href="https://cynyus.github.io/style.css" />
+  
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Cynthia&#x27;s Website" />
+  <meta property="og:title" content="
+     My first post - Cynthia&#x27;s Website
+    " />
+  <meta property="og:url" content="https:&#x2F;&#x2F;cynyus.github.io&#x2F;blog&#x2F;first&#x2F;" />
+  <meta property="og:description" content="" />
+  <meta property="og:image" content="https://cynyus.github.io/card.png" />
+  <meta property="twitter:card" content="summary_large_image" />
+</head>
+<body>
+  <script>
+// Apply stored theme before first paint to avoid flash
+(function () {
+  var t = localStorage.getItem('theme');
+  if (t) document.documentElement.setAttribute('data-theme', t);
+}());
+</script>
+<header>
+  <nav>
+    <a href="https://cynyus.github.io" class="nav-brand">
+      <img src="https://cynyus.github.io/icons/logo.png" alt="Cynthia&#x27;s Website" class="nav-logo">
+      Cynthia&#x27;s Website
+    </a>
+    <ul>
+      
+      <li>
+        <a href="https://cynyus.github.io/blog" aria-label="Blog">
+          
+            <img src="https://cynyus.github.io/icons/blog.png" alt="Blog" class="nav-pixel-icon">
+          
+          Blog
+        </a>
+      </li>
+      
+      <li>
+        <a href="/resume.pdf" aria-label="Resume">
+          
+            <img src="https://cynyus.github.io/icons/about.png" alt="Resume" class="nav-pixel-icon">
+          
+          Resume
+        </a>
+      </li>
+      
+      <li>
+        <a href="https://github.com/CynyuS" aria-label="GitHub">
+          
+            <i class="bi bi-github"></i>
+          
+          GitHub
+        </a>
+      </li>
+      
+      <li>
+        <a href="https://www.linkedin.com/in/cynthiashao25/" aria-label="LinkedIn">
+          
+            <i class="bi bi-linkedin"></i>
+          
+          LinkedIn
+        </a>
+      </li>
+      
+    </ul>
+    <button id="theme-toggle" class="nav-theme-toggle" aria-label="Toggle light/dark mode">☾</button>
+  </nav>
+</header>
+<script>
+(function () {
+  var btn = document.getElementById('theme-toggle');
+  function isDark() {
+    var t = document.documentElement.getAttribute('data-theme');
+    return t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  }
+  function sync() {
+    btn.textContent = isDark() ? '☀' : '☾';
+    btn.setAttribute('aria-label', isDark() ? 'Switch to light mode' : 'Switch to dark mode');
+  }
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    sync();
+  });
+  sync();
+}());
+</script>
+<div class="container">
+  
+<div class="win-outer">
+  <div class="win-titlebar">📓 My first post</div>
+  <div class="win-panel post-content">
+    
+      <time class="post-date" datetime="2025-08-08T00:00:00+00:00">
+        08 August 2025
+      </time>
+    
+    <p>This is my first blog post.</p>
+
+  </div>
+</div>
+</div>
+  <footer class="footer">
+  
+  <p title="Last built at 2026-04-09 22:17 -04:00"><small>&copy; Cynthia&#x27;s Website, 2026</small></p>
+  
+
+  
+
+  
+    <p><small>Powered by <a href="https://www.getzola.org">Zola</a> and <a href="https://daudix.codeberg.page/duckquill">Duckquill</a></small></p>
+  
+</footer>
+</body>
+
+</html>
