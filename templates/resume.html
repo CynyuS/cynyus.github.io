@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="win-outer">
+  <div class="win-titlebar">Resume</div>
+  <div class="win-panel post-content">
+    {{ page.content | safe }}
+    <iframe src="{{ get_url(path='resume.pdf') }}" title="Resume PDF"
+      style="width: 100%; min-height: 78vh; border: 1px solid var(--chrome-border); background: #fff;"
+      loading="lazy"></iframe>
+  </div>
+</div>
+{% endblock content %}
